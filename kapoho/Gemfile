@@ -3,14 +3,12 @@ source 'https://rubygems.org'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 gem 'rails', '3.2.6'
+gem 'jquery-rails'
+gem 'mongo_mapper'
 
-
-gem :test, :development do
+group :test, :development do
   gem 'rspec-rails', '~> 2.4'
 end
-
-gem 'sqlite3'
-
 
 # Gems used only for assets and not required
 # in production environments by default.
