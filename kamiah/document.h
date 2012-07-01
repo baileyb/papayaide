@@ -44,7 +44,8 @@ class Document {
    * @brief Applies the specified diff to the document.
    *
    * @param diff The diff to apply to the document.
-   * @return True iff the diff was applied successfully.
+   * @return True iff the diff was applied successfully. One possible failure
+   *     scenario is a diff with an out of bounds index.
    */
   bool ApplyDiff(Diff *diff);
 

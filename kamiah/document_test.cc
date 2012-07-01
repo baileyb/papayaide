@@ -55,7 +55,7 @@ TEST(DocumentTest, OneInsert) {
 TEST(DocumentTest, InsertThenDelete) {
   Document doc;
 
-  // Add "papaya" to the file
+  // Add "papaya" to the doc
   string content = "papaya";
   Diff diff(0, content);
   EXPECT_TRUE(doc.ApplyDiff(&diff));
@@ -79,6 +79,34 @@ TEST(DocumentTest, InsertThenDelete) {
   EXPECT_EQ(2U, diffs.size());
   EXPECT_EQ(1, diffs.front().version());
   EXPECT_EQ(2, diffs.back().version());
+}
+
+TEST(DocumentTest, ApplyDiffTestIndexValues) {
+  Document doc;
+
+  // Add "papaya" to the doc
+  string content = "papaya";
+  Diff diff1(0, content);
+  EXPECT_TRUE(doc.ApplyDiff(&diff1));
+
+  // Try to insert and delete at the end of the doc
+  Diff diff2(content.size(), 10);
+  Diff diff3(content.size(), "papaya");
+  EXPECT_TRUE(doc.ApplyDiff(&diff2));
+  EXPECT_TRUE(doc.ApplyDiff(&diff3));
+
+  // Try to insert and delete past the end of the doc
+  Length doc_size = content.size() * 2;
+  Diff diff4(doc_size + 1, 10);
+  Diff diff5(doc_size + 1, content);
+  EXPECT_FALSE(doc.ApplyDiff(&diff4));
+  EXPECT_FALSE(doc.ApplyDiff(&diff5));
+
+  // Try to insert and delete past the beginning of the doc
+  Diff diff6(-1, 10);
+  Diff diff7(-1, content);
+  EXPECT_FALSE(doc.ApplyDiff(&diff6));
+  EXPECT_FALSE(doc.ApplyDiff(&diff7));
 }
 
 TEST(DocumentTest, MultipleInserts) {

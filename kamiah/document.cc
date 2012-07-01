@@ -13,6 +13,11 @@ Document::Document() : version_(0), last_cached_diff_(-1) {
 }
 
 bool Document::ApplyDiff(Diff *diff) {
+  // Check for invalid index.
+  if ((diff->index() < 0) || (diff->index() > (Length) data_.size())) {
+    return false;
+  }
+
   // Increment and set version
   ++version_;
   diff->set_version(version_);
