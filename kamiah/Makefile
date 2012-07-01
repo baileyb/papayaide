@@ -47,6 +47,9 @@ document.o : document.cc document.h
 document_test : diff.o document.o document_test.o gtest_main.a
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -pthread $^ -o $@
 
+doc_perf : diff.o document.o doc_perf.cc
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) $^ -o $@
+
 %_test.o : %_test.cc
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $^
 
