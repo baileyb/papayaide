@@ -37,8 +37,10 @@ class Document {
 
   /**
    * @brief Default constructor of a Document.
+   *
+   * @param doc_id The ID of this document.
    */
-  Document();
+  explicit Document(DocID doc_id);
 
   /**
    * @brief Applies the specified diff to the document.
@@ -73,6 +75,13 @@ class Document {
   void GetData(string *data) const;
 
   /**
+   * @brief Gets the DocID of the Document.
+   *
+   * @return The DocID of the Document.
+   */
+  DocID doc_id() const;
+
+  /**
    * @brief Gets the current Version of the Document.
    *
    * @return The current Version of the Document.
@@ -80,6 +89,7 @@ class Document {
   Version version() const;
 
  private:
+  DocID doc_id_;
   Version version_;
   string data_;
   list<Diff> diffs_;

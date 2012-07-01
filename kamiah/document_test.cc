@@ -12,7 +12,9 @@
 namespace kamiah {
 
 TEST(DocumentTest, InitialDocument) {
-  Document doc;
+  Document doc(13);
+
+  EXPECT_EQ(13, doc.doc_id());
 
   // Version 0
   EXPECT_EQ(0, doc.version());
@@ -31,7 +33,7 @@ TEST(DocumentTest, InitialDocument) {
 }
 
 TEST(DocumentTest, OneInsert) {
-  Document doc;
+  Document doc(1);
 
   string content = "papaya";
   Diff diff(0, content);
@@ -53,7 +55,7 @@ TEST(DocumentTest, OneInsert) {
 }
 
 TEST(DocumentTest, InsertThenDelete) {
-  Document doc;
+  Document doc(1);
 
   // Add "papaya" to the doc
   string content = "papaya";
@@ -82,7 +84,7 @@ TEST(DocumentTest, InsertThenDelete) {
 }
 
 TEST(DocumentTest, ApplyDiffTestIndexValues) {
-  Document doc;
+  Document doc(1);
 
   // Add "papaya" to the doc
   string content = "papaya";
@@ -110,7 +112,7 @@ TEST(DocumentTest, ApplyDiffTestIndexValues) {
 }
 
 TEST(DocumentTest, MultipleInserts) {
-  Document doc;
+  Document doc(1);
 
   // Add "bef_papaya_aft" to the file
   Diff diff1(0, "papaya");
@@ -136,7 +138,7 @@ TEST(DocumentTest, MultipleInserts) {
 }
 
 TEST(DocumentTest, MultipleDeletes) {
-  Document doc;
+  Document doc(1);
 
   // Add "bef_papaya_aft" to the file
   Diff diff1(0, "papaya-papaya");
@@ -162,7 +164,7 @@ TEST(DocumentTest, MultipleDeletes) {
 }
 
 TEST(DocumentTest, DiffCache) {
-  Document doc;
+  Document doc(1);
 
   // Add "papaya-papaya" to the file
   Diff diff1(0, "papaya-papaya");
@@ -205,7 +207,7 @@ TEST(DocumentTest, DiffCache) {
 }
 
 TEST(DocumentTest, DiffCacheMaxSize) {
-  Document doc;
+  Document doc(1);
 
   // Add just as many "papaya" as there are spots in the cache
   Version max_cache = Document::kMaxCacheSize;
@@ -247,7 +249,7 @@ TEST(DocumentTest, DiffCacheMaxSize) {
 }
 
 TEST(DocumentTest, DiffCacheLargerThanMaxSize) {
-  Document doc;
+  Document doc(1);
 
   // Add one more "papaya" than there is room for in the diff cache
   Version num_diffs = Document::kMaxCacheSize + 1;

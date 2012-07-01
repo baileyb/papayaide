@@ -12,5 +12,6 @@ namespace kamiah {
 typedef int64_t Version;
 typedef int64_t Index;
 typedef int64_t Length;
+typedef int64_t DocID;
 
 }  // namespace kamiah

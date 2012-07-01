@@ -9,7 +9,8 @@
 
 namespace kamiah {
 
-Document::Document() : version_(0), last_cached_diff_(-1) {
+Document::Document(DocID doc_id)
+    : doc_id_(doc_id), version_(0), last_cached_diff_(-1) {
 }
 
 bool Document::ApplyDiff(Diff *diff) {
@@ -74,6 +75,10 @@ bool Document::GetUpdates(Version from_version, list<Diff> *updates) const {
 
 void Document::GetData(string *data) const {
   *data = data_;
+}
+
+DocID Document::doc_id() const {
+  return doc_id_;
 }
 
 Version Document::version() const {
