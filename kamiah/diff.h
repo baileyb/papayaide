@@ -21,6 +21,8 @@ namespace kamiah {
  *   Insertions: Have an index to start inserting at, and what to insert.
  *   Deletions: Have an index to start deleting at, and the number of characters
  *     to delete.
+ *
+ * This class is thread-compatible.
  */
 class Diff {
  public:

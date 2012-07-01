@@ -1,3 +1,10 @@
+/**
+ * @file document_test.cc
+ * @brief Unit tests for a Document.
+ *
+ * @author Victor Marmol (vmarmol@gmail.com)
+ */
+
 #include "document.h"
 
 #include "gtest/gtest.h"

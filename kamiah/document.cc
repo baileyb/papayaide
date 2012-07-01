@@ -1,3 +1,10 @@
+/**
+ * @file document.cc
+ * @brief Implementation of a Document.
+ *
+ * @author Victor Marmol (vmarmol@gmail.com)
+ */
+
 #include "document.h"
 
 namespace kamiah {
