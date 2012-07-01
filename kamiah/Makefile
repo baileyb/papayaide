@@ -27,11 +27,11 @@ TESTS = document_test diff_test
 GTEST_HEADERS = $(GTEST_DIR)/include/gtest/*.h \
                 $(GTEST_DIR)/include/gtest/internal/*.h
 
-all:
+all :
 
 all_tests : $(TESTS)
 
-clean:
+clean :
 	rm -f $(TESTS) *.o *.a
 	rm -rf doc/
 

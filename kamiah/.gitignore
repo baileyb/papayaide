@@ -1,0 +1,4 @@
+# Ignore all output files
+*.o
+*.a
+*_test
