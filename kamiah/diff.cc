@@ -1,7 +1,11 @@
-#include <string>
+/**
+ * @file diff.cc
+ * @brief Implementation of a Diff.
+ *
+ * @author Victor Marmol (vmarmol@gmail.com)
+ */
 
 #include "diff.h"
-#include "types.h"
 
 namespace kamiah {
 

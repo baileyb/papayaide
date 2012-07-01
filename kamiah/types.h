@@ -1,3 +1,10 @@
+/**
+ * @file types.h
+ * @brief Types used throughout Kamiah.
+ *
+ * @author Victor Marmol (vmarmol@gmail.com)
+ */
+
 #include <stdint.h>
 
 namespace kamiah {

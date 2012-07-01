@@ -1,7 +1,11 @@
+/**
+ * @file diff_test.cc
+ * @brief Unit tests for a Diff.
+ *
+ * @author Victor Marmol (vmarmol@gmail.com)
+ */
 
 #include "diff.h"
-
-#include <string>
 
 #include "gtest/gtest.h"
 
