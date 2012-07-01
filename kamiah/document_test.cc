@@ -1,14 +1,9 @@
-#include <string>
-
 #include "document.h"
 
-using std::string;
+#include <string>
 
-int main() {
-  kamiah::Document doc;
+#include "gtest/gtest.h"
 
-  string str;
-  doc.GetData(&str);
-
-  return 0;
+TEST(FactorialTest, Zero) {
+  ASSERT_TRUE(true);
 }

@@ -6,11 +6,11 @@
 namespace kamiah {
 
 Diff::Diff(Index index, const string& text)
-  : type_(INSERT), index_(index), text_(text) {
+  : version_(-1), type_(INSERT), index_(index), text_(text) {
 }
 
 Diff::Diff(Index index, Length length)
-  : type_(DELETE), index_(index), length_(length) {
+  : version_(-1), type_(DELETE), index_(index), length_(length) {
 }
 
 void Diff::set_version(Version version) {
