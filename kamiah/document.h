@@ -16,18 +16,20 @@ namespace kamiah {
 
 class Document {
  public:
-  Document();
-
-  bool ApplyDiff(const Diff& diff);
-
-  bool GetUpdates(Version from_version, list<Diff> *updates) const;
-
-  void GetData(string *data);
-
- private:
   // Max size of the diff cache.
   static const size_t kMaxCacheSize = 10;
 
+  Document();
+
+  bool ApplyDiff(Diff *diff);
+
+  bool GetUpdates(Version from_version, list<Diff> *updates) const;
+
+  void GetData(string *data) const;
+
+  Version version() const;
+
+ private:
   Version version_;
   string data_;
   list<Diff> diffs_;

@@ -32,7 +32,7 @@ all:
 all_tests : $(TESTS)
 
 clean:
-	rm -f $(TESTS) gtest.a gtest_main.a *.o
+	rm -f $(TESTS) *.o *.a
 	rm -rf doc/
 
 diff.o : diff.cc diff.h

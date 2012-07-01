@@ -5,23 +5,13 @@ namespace kamiah {
 Document::Document() : version_(0), last_cached_diff_(-1) {
 }
 
-bool Document::ApplyDiff(const Diff& diff) {
-  // Increment version
+bool Document::ApplyDiff(Diff *diff) {
+  // Increment and set version
   ++version_;
-
-  // Apply to the document
-  switch (diff.type()) {
-    case Diff::INSERT:
-      data_.insert(diff.index(), diff.text());
-      break;
-    case Diff::DELETE:
-      data_.erase(diff.index(), diff.length());
-      break;
-  }
+  diff->set_version(version_);
 
   // Add to our cache 
-  diffs_.push_back(diff);
-  diffs_.end()->set_version(version_);
+  diffs_.push_back(*diff);
 
   // Remove from the cache if it is over size
   if (diffs_.size() > kMaxCacheSize) {
@@ -32,7 +22,17 @@ bool Document::ApplyDiff(const Diff& diff) {
     last_cached_diff_ = version_;
   }
 
-  return false;
+  // Apply to the document
+  switch (diff->type()) {
+    case Diff::INSERT:
+      data_.insert(diff->index(), diff->text());
+      break;
+    case Diff::DELETE:
+      data_.erase(diff->index(), diff->length());
+      break;
+  }
+
+  return true;
 }
 
 bool Document::GetUpdates(Version from_version, list<Diff> *updates) const {
@@ -60,8 +60,12 @@ bool Document::GetUpdates(Version from_version, list<Diff> *updates) const {
   return true;
 }
 
-void Document::GetData(string *data) {
+void Document::GetData(string *data) const {
   *data = data_;
+}
+
+Version Document::version() const {
+  return version_;
 }
 
 }  // namespace kamiah
